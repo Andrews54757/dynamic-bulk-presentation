@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.30)  11 AUG 2024 01:40
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.30)  11 AUG 2024 21:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -910,9 +910,13 @@ File: pallaslice2lbl.png Graphic file (type bmp)
 <pallaslice2lbl.png>
 File: pallaslice2lblzoom.png Graphic file (type bmp)
 <pallaslice2lblzoom.png>
+
+Overfull \vbox (3.51633pt too high) detected at line 163
+ []
+
 File: logo3.png Graphic file (type bmp)
 <logo3.png>
- [10
+[10
 
 ]
 File: dynamicbulk2.png Graphic file (type bmp)
@@ -979,16 +983,47 @@ File: logo3.png Graphic file (type bmp)
  [16
 
 ]
+File: meme.png Graphic file (type bmp)
+<meme.png>
 File: logo3.png Graphic file (type bmp)
 <logo3.png>
  [17
+
+]
+File: fastslow.png Graphic file (type bmp)
+<fastslow.png>
+File: logo3.png Graphic file (type bmp)
+<logo3.png>
+ [18
+
+]
+File: lazy.png Graphic file (type bmp)
+<lazy.png>
+
+Overfull \vbox (37.35643pt too high) detected at line 335
+ []
+
+File: logo3.png Graphic file (type bmp)
+<logo3.png>
+[19
+
+]
+File: layout2.png Graphic file (type bmp)
+<layout2.png>
+
+Overfull \vbox (19.96667pt too high) detected at line 348
+ []
+
+File: logo3.png Graphic file (type bmp)
+<logo3.png>
+[20
 
 ]
 File: nonboxlayout.png Graphic file (type bmp)
 <nonboxlayout.png>
 File: logo3.png Graphic file (type bmp)
 <logo3.png>
- [18
+ [21
 
 ]
 File: slotiter.png Graphic file (type bmp)
@@ -997,32 +1032,11 @@ File: slotintern.png Graphic file (type bmp)
 <slotintern.png>
 File: logo3.png Graphic file (type bmp)
 <logo3.png>
- [19
+ [22
 
 ]
 File: nonbox.png Graphic file (type bmp)
 <nonbox.png>
-File: logo3.png Graphic file (type bmp)
-<logo3.png>
- [20
-
-]
-File: linkedlistlayout.png Graphic file (type bmp)
-<linkedlistlayout.png>
-
-Overfull \vbox (28.69627pt too high) detected at line 346
- []
-
-File: logo3.png Graphic file (type bmp)
-<logo3.png>
-[21
-
-]
-File: logo3.png Graphic file (type bmp)
-<logo3.png>
- [22
-
-]
 File: logo3.png Graphic file (type bmp)
 <logo3.png>
  [23
@@ -1031,6 +1045,16 @@ File: logo3.png Graphic file (type bmp)
 File: logo3.png Graphic file (type bmp)
 <logo3.png>
  [24
+
+]
+File: logo3.png Graphic file (type bmp)
+<logo3.png>
+ [25
+
+]
+File: logo3.png Graphic file (type bmp)
+<logo3.png>
+ [26
 
 ]
 \tf@nav=\write6
@@ -1043,16 +1067,22 @@ File: logo3.png Graphic file (type bmp)
 \openout8 = `presentation.snm'.
 
  (./presentation.aux)
-Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 45FB4B9B4425434736AB8140578A31EB;2187.
+
+Package rerunfilecheck Warning: File `presentation.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `presentation.out':
+(rerunfilecheck)             Before: 1254299D86ACDAA4C9C3D187BC42B900;1947
+(rerunfilecheck)             After:  DFDF8E2C4390BDA0F13AA4EBD2482B90;1980.
  ) 
 Here is how much of TeX's memory you used:
- 27739 strings out of 476179
- 606778 string characters out of 5809543
- 896961 words of memory out of 5000000
- 47892 multiletter control sequences out of 15000+600000
- 473888 words of font info for 73 fonts, out of 8000000 for 9000
+ 27776 strings out of 476179
+ 607274 string characters out of 5809543
+ 896834 words of memory out of 5000000
+ 47924 multiletter control sequences out of 15000+600000
+ 475449 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,13n,125p,1933b,582s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on presentation.pdf (24 pages).
+Output written on presentation.pdf (26 pages).

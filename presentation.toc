@@ -1,9 +1,9 @@
 \beamer@sectionintoc {1}{1. What is dynamic bulk?}{3}{0}{1}
 \beamer@sectionintoc {2}{2. Fast and compact data storage is hard}{9}{0}{2}
-\beamer@subsectionintoc {2}{1}{2.1 Internal memory is too big, complex, and laggy}{10}{0}{2}
-\beamer@subsectionintoc {2}{2}{2.2 Item RAMs are still too big}{13}{0}{2}
-\beamer@subsectionintoc {2}{3}{2.3 Disk Drives are too slow}{15}{0}{2}
+\beamer@subsectionintoc {2}{1}{2.1 Internal logic has problems}{10}{0}{2}
+\beamer@subsectionintoc {2}{2}{2.2 Item RAMs are fast but large}{13}{0}{2}
+\beamer@subsectionintoc {2}{3}{2.3 Disk drives are small but slow}{15}{0}{2}
 \beamer@sectionintoc {3}{3. Solution: Linked-list based dynamic bulk}{17}{0}{3}
-\beamer@subsectionintoc {3}{1}{3.1 Non-box item RAM is fast and compact}{18}{0}{3}
-\beamer@subsectionintoc {3}{2}{3.2 Linked-list to the rescue}{21}{0}{3}
-\beamer@sectionintoc {4}{4. Conclusion and future steps}{24}{0}{4}
+\beamer@subsectionintoc {3}{1}{3.1 Analysis of the problem}{17}{0}{3}
+\beamer@subsectionintoc {3}{2}{3.2 Implementation}{21}{0}{3}
+\beamer@sectionintoc {4}{4. Conclusion and future steps}{26}{0}{4}

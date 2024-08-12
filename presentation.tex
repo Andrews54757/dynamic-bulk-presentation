@@ -144,14 +144,14 @@
 	\end{figure}
 \end{frame}
 
-\subsection{2.1 Internal memory is too big, complex, and laggy}
+\subsection{2.1 Internal logic has problems}
 
 \begin{frame}
-	\frametitle{2.1 Internal memory is too big, complex, and laggy}
+	\frametitle{2.1 Internal logic has problems}
 
     \begin{itemize}
 		\item PallaPalla, original inventor of dynamic bulk, uses a binary re-mappable decoder to store assigned item code within each slice.
-		\item Almost every piston in each slice's decoder is fired to write/test item codes.
+		\item Almost every piston in each slice's decoder is fired to write/test item codes. Laggy and higher chance of data corruption.
 		\item Allocation logic is internal to the slice, so each slice is large and complex.
 	\end{itemize}
 
@@ -163,7 +163,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{2.1 Internal memory is too big, complex, and laggy. Contd.}
+	\frametitle{2.1 Internal logic has problems. Contd.}
 
     \begin{itemize}
 		\item What if we externalized the slice allocation logic?
@@ -183,7 +183,7 @@
 
 
 \begin{frame}
-	\frametitle{2.1 Internal memory is too big, complex, and laggy. Contd.}
+	\frametitle{2.1 Internal logic has problems. Contd.}
 
     \begin{itemize}
 		\item How is slice allocation information stored externally?
@@ -202,11 +202,11 @@
 \end{frame}
 
 
-\subsection{2.2 Item RAMs are still too big}
+\subsection{2.2 Item RAMs are fast but large}
 
 
 \begin{frame}
-	\frametitle{2.2 Item RAMs are still too big}
+	\frametitle{2.2 Item RAMs are fast but large}
 
     \begin{itemize}
 		\item An item RAM is a memory unit that stores items in an addressible way
@@ -222,7 +222,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{2.2 Item RAMs are still too big. Contd.}
+	\frametitle{2.2 Item RAMs are fast but large. Contd.}
 
     \begin{itemize}
 		\item Unfortunately, item RAMs are very big.
@@ -237,10 +237,10 @@
     \end{figure}
 \end{frame}
 
-\subsection{2.3 Disk Drives are too slow}
+\subsection{2.3 Disk drives are small but slow}
 
 \begin{frame}
-	\frametitle{2.3 Disk Drives are too slow}
+	\frametitle{2.3 Disk drives are small but slow}
 
     \begin{itemize}
 		\item What if, we stored multiple boxes from different addresses in a single block?
@@ -257,7 +257,7 @@
 
 
 \begin{frame}
-	\frametitle{2.3 Disk Drives are too slow. Contd.}
+	\frametitle{2.3 Disk drives are small but slow. Contd.}
 
     \begin{itemize}
 		\item Cycling through slots is slow, 8gt per slot.
@@ -273,22 +273,85 @@
 
 \section{3. Solution: Linked-list based dynamic bulk}
 
+% To recap, item RAMs are too big, and Disk drives are small but slow. The ideal solution would be a device that combines the best of both worlds to have both fast retrieval time and a compact size. Such a device would revolutionize the way we build dynamic bulk storage systems, making them more efficient and easier to implement.
+
+% How can we achieve this? To answer that question, we need to seek inspiration from the world of computer science to develop a new  approach to dynamic bulk storage systems.
+
+\subsection{3.1 Analysis of the problem}
 
 \begin{frame}
-	\frametitle{3. Towards a better dynamic bulk}
+	\frametitle{3.1 Analysis of the problem}
+
+    \begin{columns}
+        \column{0.55\linewidth}
+    \begin{itemize}
+		\item Item RAMs are fast but too big
+        \item Disk drives are compact but too slow
+        \item We need something that is both fast and compact
+        \item \textbf{Towards a solution:} Get inspiration from computer science
+	\end{itemize}
+
+    \column{0.4\linewidth}
+        
+        \begin{figure}
+        		\includegraphics[width=1\textwidth]{meme.png}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+% Lets make some observations. Recall that it is important to retrieve a specific box out of a thousand quickly because any delay in this step will increase the wait time for the requested items to arrive. But does the system need to know all the slices allocated to an item type at once?
+
+% No, it doesn't. The system only needs to know the partial slice first, as it is the slice that will be emptied or filled first. Filling and emptying takes a while anyway, so the system can take its time to find the other slices allocated to the item type. We only need to be quick with queries for the partial slice and the rest can be done in the background.
+
+\begin{frame}
+	\frametitle{3.1 Analysis of the problem. Contd.}
 
     \begin{itemize}
-		\item How can we store the slice allocation information in a way that is fast and compact?
-		\item Need a data storage that uses minimal space and can be accessed quickly
-		\item What if we seperate the partial slice allocation information from the list of full slices?
+		\item Observations:
+        \begin{itemize}
+            \item System only needs to know the partial slice first
+            \item Filling and emptying takes a while
+            \item Rest of the slices can be slowly found in the background
+        \end{itemize}
+        \item \textbf{Idea:} Seperate the storage of partial slice information from the rest
 	\end{itemize}
+
+    \begin{figure}
+        \includegraphics[width=1\textwidth]{fastslow.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{3.1 Analysis of the problem. Contd.}
+
+    \begin{itemize}
+		\item \textbf{Lazy loading:} Defer loading an object until it is needed
+        \item Store only the partial slice codes in a separate storage device with rapid access
+        \item Slowly access information about other slices in the background as needed
+	\end{itemize}
+    \begin{figure}
+        \includegraphics[width=0.65\textwidth]{lazy.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{3.1 Analysis of the problem. Contd.}
+
+    \begin{itemize}
+		\item \textbf{Linked list:} Sequence of elements where each element points to the next
+        \item Efficient insertion and deletion at the start of the list
+        \item Slower access time to elements in the middle and end
+	\end{itemize}
+    \begin{figure}
+        \includegraphics[width=0.95\textwidth]{layout2.png}
+    \end{figure}
 \end{frame}
 
 
-\subsection{3.1 Non-box item RAM is fast and compact}
+\subsection{3.2 Implementation}
 
 \begin{frame}
-	\frametitle{3.1 Non-box item RAM is fast and compact}
+	\frametitle{3.2 Implementation}
 
     \begin{itemize}
 		\item If instead of storing boxes, we store a single non-box slice code item per address
@@ -296,29 +359,29 @@
 	\end{itemize}
     \begin{figure}
         \includegraphics[width=0.8\textwidth]{nonboxlayout.png}
-        \caption{\textbf{Figure 20:} Non-box item RAM storage scheme}
+        \caption{\textbf{Figure 24:} Non-box item RAM storage scheme}
     \end{figure}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{3.1 Non-box item RAM is fast and compact. Contd.}
+	\frametitle{3.2 Implementation. Contd.}
 
     \begin{itemize}
-		\item We can quickly bring boxes to an ultrafast slot cycler to access the correct item
-		\item Uses hoppercarts, which can pull items from shulker boxes every game tick
+		\item Using hoppercarts, can pull items from shulker boxes every game tick
         \item 8x faster cycling than traditional disk drives. Item at the 20th slot takes only 1 second
+		\item We can quickly bring boxes to the ultrafast slot cycler using instant droppers
 	\end{itemize}
     \begin{figure}
         \includegraphics[width=0.15\textwidth]{slotiter.png}
         \includegraphics[width=0.15\textwidth]{slotintern.png}
-        \caption{\textbf{Figure 21-22:} 1 slot/gt slot cycler with internal layout}
+        \caption{\textbf{Figure 25-26:} 1 slot/gt slot cycler with internal layout}
     \end{figure}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{3.1 Non-box item RAM is fast and compact. Contd.}
+	\frametitle{3.2 Implementation. Contd.}
 
     \begin{itemize}
 		\item Combine slot cycler with 50 item RAM (21gt call latency)
@@ -327,27 +390,13 @@
 	\end{itemize}
     \begin{figure}
         \includegraphics[width=0.4\textwidth]{nonbox.png}
-        \caption{\textbf{Figure 23:} 1000 address non box item RAM}
-    \end{figure}
-\end{frame}
-
-\subsection{3.2 Linked-list to the rescue}
-
-\begin{frame}
-	\frametitle{3.2 Linked-list to the rescue}
-
-    \begin{itemize}
-		\item \textbf{Recall:} We need to be able to allocate more than one slice to an item type, but the non-box item RAM can only store one slice per address
-        \item \textbf{Solution:} Store the next full slice's slice code item in the current slice to form a linked list
-	\end{itemize}
-    \begin{figure}
-        \includegraphics[width=0.65\textwidth]{linkedlistlayout.png}
+        \caption{\textbf{Figure 27:} 1000 address non box item RAM}
     \end{figure}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{3.2 Linked-list to the rescue. Contd.}
+	\frametitle{3.2 Implementation. Contd.}
 
     \begin{itemize}
         \item Maintaining the linked list for \textbf{insertion} is simple.
@@ -361,9 +410,8 @@
     \end{itemize}
 \end{frame}
 
-
 \begin{frame}
-	\frametitle{3.2 Linked-list to the rescue. Contd.}
+	\frametitle{3.2 Implementation. Contd.}
 
     \begin{itemize}
         \item Maintaining the linked list for \textbf{retreival} is also simple.
